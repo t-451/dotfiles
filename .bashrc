@@ -116,12 +116,23 @@ if ! shopt -oq posix; then
   fi
 fi
 
-## Tilix setting
+## for Tilix setting
 ### https://gnunn1.github.io/tilix-web/manual/vteconfig/
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
 
-## asdf
+## for asdf
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
+
+## for peco
+function peco-select-history() {
+    local tac
+    which gtac &> /dev/null && tac="gtac" || \
+        which tac &> /dev/null && tac="tac" || \
+        tac="tail -r"
+    READLINE_LINE=$(HISTTIMEFORMAT= history | $tac | sed -e 's/^\s*[0-9]\+\s\+//' | awk '!a[$0]++' | peco --query "$READLINE_LINE")
+    READLINE_POINT=${#READLINE_LINE}
+}
+bind -x '"\C-r": peco-select-history'
