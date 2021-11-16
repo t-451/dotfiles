@@ -136,3 +136,18 @@ function peco-select-history() {
     READLINE_POINT=${#READLINE_LINE}
 }
 bind -x '"\C-r": peco-select-history'
+
+function peco-repo() {
+  local selected_file=$(ghq list --full-path | peco --query "$LBUFFER")
+  if [ -n "$selected_file" ]; then
+    if [ -t 1 ]; then
+      echo ${selected_file}
+      cd ${selected_file}
+    fi
+  fi
+}
+bind -x '"\C-t": peco-repo'
+
+
+## env
+export PATH="$PATH":/home/t451/.local/bin
