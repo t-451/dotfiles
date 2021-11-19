@@ -1,0 +1,41 @@
+// 既定値を上書きするには、このファイル内にキー バインドを挿入します
+[
+    { "key": "ctrl+shift+c",          "command": "-workbench.action.terminal.copySelection",
+                                     "when": "terminalFocus && terminalProcessSupported && terminalTextSelected && terminalTextSelected" },
+    { "key": "ctrl+shift+v",          "command": "-workbench.action.terminal.paste",
+                                     "when": "terminalFocus && terminalProcessSupported" },
+    {
+        "key": "ctrl+f",
+        "command": "cursorRight",
+        "when": "terminalFocus"
+    },
+    // vscodevim を利用している場合には不要
+    //{
+    //    "key": "ctrl+e",
+    //    "command": "workbench.action.quickOpen",
+    //    "when": "!terminalFocus"
+    //},
+    {
+        "key": "ctrl+e",
+        "command": "-workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "workbench.action.quickOpen",
+        "when": "!terminalFocus"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "-workbench.action.quickOpen"
+    },
+    {
+        "key": "alt+c",
+        "command": "workbench.action.terminal.copySelection",
+        "when": "terminalFocus && terminalProcessSupported && terminalTextSelected && terminalTextSelected" 
+    },
+    {
+        "key": "alt+v",
+        "command": "workbench.action.terminal.paste",
+        "when": "terminalFocus && terminalProcessSupported"
+    },
+]
